@@ -48,7 +48,7 @@ def is_valid_image(path):
 
 if __name__=="__main__":
 
-    root="Kaggle_CatDog_dataset/PetImages"  #文件夹位置
+    root="data/train"  #文件夹位置
 
     Classify=["Cat","Dog"]
     del_nums={}   #被删除图片数量
