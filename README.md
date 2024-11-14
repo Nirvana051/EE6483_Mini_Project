@@ -14,7 +14,7 @@ The outline is as follows：
 
 ### 1.Damaged picture cleaning
 
-In the `01_clean.py` file, there are several ways to clean damaged images: 
+In the `clean.py` file, there are several ways to clean damaged images: 
 
 1. Determine if the file starts with JFIF.
 2. Use the imghdr library's imghdr.what function to determine the file type.
@@ -24,7 +24,7 @@ In the `01_clean.py` file, there are several ways to clean damaged images:
 
 You can copy **any given number of pictures** from the original picture folder to the **train** folder and rename it as follows:
 
-The program is: '02_data_processing.py'.
+The program is: 'data_processing.py'.
 
 ## Image preprocessing
 
