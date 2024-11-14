@@ -1,12 +1,12 @@
 # README
 
-## 一、Problem description
+## 1. Problem description
 
 Based on the data of the training set, a model is trained to predict the probability that the animal in the unknown picture is a dog or a cat by using the well-trained model.
 
 The training set consists of 20,000 pictures, and the test set contains 5,000 pictures. 
 
-## 二、Datasets processing
+## 2. Datasets processing
 
 ### 1 Damaged picture cleaning
 
@@ -16,15 +16,13 @@ In the `01_clean.py` file, there are several ways to clean damaged images:
 2. Use the imghdr library's imghdr.what function to determine the file type.
 3. Use the Image.open(filename).verify() method to verify if the image is damaged.
 
-结果如下：
-
 ### 2 The images are extracted to form a data set
 
 You can copy **any given number of pictures** from the original picture folder to the **train** folder and rename it as follows:
 
 The program is: '02_data_processing.py'.
 
-## 三、Image preprocessing
+## 3. Image preprocessing
 
 The image preprocessing part needs to be completed:
 
@@ -34,7 +32,7 @@ The image preprocessing part needs to be completed:
 4. Image data enhancement
 5. Form the loader: Return the image data and corresponding labels, using the Pytorch Dataset package
 
-## 四、Model
+## 4. Model
 
 The models are placed in 'models.py' and use some classic CNN models:
 
@@ -43,7 +41,7 @@ The models are placed in 'models.py' and use some classic CNN models:
 3. ResNet
 4. SqueezeNet
 
-## 五、Train
+## 5. Train
 
 Training in 'main.py' is mainly the integration of data acquisition, training, evaluation, model saving and other functions, which can achieve the following functions:
 
@@ -89,7 +87,7 @@ tensorboard --logdir runs
 |         resNet        |       95%       |
 |    resNet(pretrain)   |       98%       |
 
-## 6、Predict
+## 6. Predict
 
 After the model is trained, you can open 'predict.py' to predict the new picture, given the model to predict and the forecast picture folder:
 
