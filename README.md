@@ -1,14 +1,14 @@
 # README
 
-## 1. Problem description
+## Problem description
 
 Based on the data of the training set, a model is trained to predict the probability that the animal in the unknown picture is a dog or a cat by using the well-trained model.
 
 The training set consists of 20,000 pictures, and the test set contains 5,000 pictures. 
 
-## 2. Datasets processing
+## Datasets processing
 
-### 1 Damaged picture cleaning
+### 1.Damaged picture cleaning
 
 In the `01_clean.py` file, there are several ways to clean damaged images: 
 
@@ -16,13 +16,13 @@ In the `01_clean.py` file, there are several ways to clean damaged images:
 2. Use the imghdr library's imghdr.what function to determine the file type.
 3. Use the Image.open(filename).verify() method to verify if the image is damaged.
 
-### 2 The images are extracted to form a data set
+### 2.The images are extracted to form a data set
 
 You can copy **any given number of pictures** from the original picture folder to the **train** folder and rename it as follows:
 
 The program is: '02_data_processing.py'.
 
-## 3. Image preprocessing
+## Image preprocessing
 
 The image preprocessing part needs to be completed:
 
@@ -32,7 +32,7 @@ The image preprocessing part needs to be completed:
 4. Image data enhancement
 5. Form the loader: Return the image data and corresponding labels, using the Pytorch Dataset package
 
-## 4. Model
+## Models
 
 The models are placed in 'models.py' and use some classic CNN models:
 
@@ -41,7 +41,7 @@ The models are placed in 'models.py' and use some classic CNN models:
 3. ResNet
 4. SqueezeNet
 
-## 5. Train
+## Train
 
 Training in 'main.py' is mainly the integration of data acquisition, training, evaluation, model saving and other functions, which can achieve the following functions:
 
@@ -52,7 +52,7 @@ Training in 'main.py' is mainly the integration of data acquisition, training, e
 5. Evaluation of the model: Loss and Accuracy
 6. Visualize with **TensorBoard**
 
-#### 1 Start training
+#### 1.Start training
 
 In the 'main.py' program, set parameters and models (you can see what models are available in 'models.py') :
 
@@ -68,7 +68,7 @@ If the program is interrupted, set the resume parameter to True, you can continu
 
 You can also adjust learning rate, learning rate decay, weight decay, optimizer, and whether to select a pre-trained model
 
-#### 2 tensorboard visualization
+#### 2.tensorboard visualization
 
 Open tensorboard in vscode, or go to the current project folder on the command line and type
 
@@ -87,7 +87,7 @@ tensorboard --logdir runs
 |         resNet        |       95%       |
 |    resNet(pretrain)   |       98%       |
 
-## 6. Predict
+## Predict
 
 After the model is trained, you can open 'predict.py' to predict the new picture, given the model to predict and the forecast picture folder:
 
