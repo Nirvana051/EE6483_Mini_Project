@@ -1,12 +1,3 @@
-'''
-Author: Aurora 2074375758@qq.com
-Date: 2022-04-20 14:07:33
-LastEditTime: 2024-02-19 16:08:46
-FilePath: /Cat-Vs-Dog/02_data_processing.py
-Description: 从原始数据中取出训练数据和验证数据
-Copyright (c) 2024 by Aurora, All Rights Reserved. 
-'''
-
 
 import os
 import random

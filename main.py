@@ -1,11 +1,3 @@
-'''
-Author: Aurora 2074375758@qq.com
-Date: 2022-04-20 15:34:38
-LastEditTime: 2024-02-19 16:08:52
-FilePath: /Cat-Vs-Dog/main.py
-Description: 训练模型主程序，包括模型的训练和验证，以及模型的保存和加载
-Copyright (c) 2024 by Aurora, All Rights Reserved. 
-'''
 
 import torch
 import torchvision
@@ -239,15 +231,15 @@ if __name__=="__main__":
     trainPath="./data/train"    #训练数据集路径
     valPath = "./data/val"      #验证数据集路径
     epoch_num = 100             #迭代次数
-    modelname="ResNet34"       #模型名字
-    batchsize = 32             #batchsize
+    modelname="ResNet34"        #模型名字
+    batchsize = 32              #batchsize
     resume=False                #是否接着上次的继续训练
-    lr=0.01                      #5e-5 1e-3 5e-4
-    lr_decay=0.5                #学习率下降率 0.9 0.95
-    weight_dacay = 0
+    lr=5e-5                     #5e-5 1e-3 5e-4
+    lr_decay=0.9                #学习率下降率 0.9 0.95
+    weight_dacay = 5e-4         #5e-4
     pre=False                   #是否采用预训练模型，采用预训练模型需要相应更改if pre后面的模型加载
     cifar=False
-    op = "SGD"
+    op="Adam"
     
     """开始训练"""
     start=time.time()

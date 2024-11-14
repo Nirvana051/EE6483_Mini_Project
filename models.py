@@ -1,11 +1,3 @@
-'''
-Author: Aurora 2074375758@qq.com
-Date: 2022-04-20 15:33:09
-LastEditTime: 2024-02-19 16:33:04
-FilePath: /Cat-Vs-Dog/models.py
-Description: 各种模型的定义文件,包括LeNet、AlexNet、ResNet34、SqueezeNet等模型的定义
-Copyright (c) 2024 by Aurora, All Rights Reserved. 
-'''
 
 import torch
 import torch.nn as nn
@@ -438,7 +430,7 @@ class ResNet34b(nn.Module):
     def __init__(self,
                  block = BasicBlock,  # 使用的残差块类型
                  blocks_num = [3, 4, 6, 3],  # 每个卷积层，使用残差块的个数
-                 num_classes=1000,  # 训练集标签的分类个数
+                 num_classes=2,  # 训练集标签的分类个数
                  include_top=True,  # 是否在残差结构后接上pooling、fc、softmax
                  groups=1,
                  width_per_group=64):
@@ -527,7 +519,7 @@ class ResNet50(nn.Module):
     def __init__(self,
                  block = Bottleneck,  # 使用的残差块类型
                  blocks_num = [3, 4, 6, 3],  # 每个卷积层，使用残差块的个数
-                 num_classes=1000,  # 训练集标签的分类个数
+                 num_classes=2,  # 训练集标签的分类个数
                  include_top=True,  # 是否在残差结构后接上pooling、fc、softmax
                  groups=1,
                  width_per_group=64):

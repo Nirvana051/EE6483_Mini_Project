@@ -1,12 +1,3 @@
-'''
-Author: Aurora 2074375758@qq.com
-Date: 2022-04-20 10:58:00
-LastEditTime: 2024-02-19 16:08:40
-FilePath: /Cat-Vs-Dog/01_clean.py
-Description: 多种方式判断图片是否损坏，并删除
-Copyright (c) 2024 by Aurora, All Rights Reserved. 
-'''
-
 
 import os
 from PIL import Image
@@ -48,7 +39,7 @@ def is_valid_image(path):
 
 if __name__=="__main__":
 
-    root="data/train"  #文件夹位置
+    root="datasets/train"  #文件夹位置
 
     Classify=["Cat","Dog"]
     del_nums={}   #被删除图片数量

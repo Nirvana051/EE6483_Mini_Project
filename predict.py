@@ -1,19 +1,11 @@
-'''
-Author: Aurora 2074375758@qq.com
-Date: 2022-04-20 19:06:47
-LastEditTime: 2024-02-20 09:41:45
-FilePath: /Cat-Vs-Dog/predict.py
-Description: 利用训练好的模型进行预测
-Copyright (c) 2024 by Aurora, All Rights Reserved. 
-'''
 
 import os
 import torch
-import torch.nn as nn
 from torchvision import transforms
 from PIL import Image
-import matplotlib.pyplot as plt
-from models import LeNet1
+# import matplotlib.pyplot as plt
+import models
+import csv
 
 def predict(root,imgname, model, img_trans):
     imgpath = os.path.join(root, imgname)
@@ -21,6 +13,7 @@ def predict(root,imgname, model, img_trans):
     img_tensor = img_trans(img_rgb).unsqueeze(0)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
+    model.eval()
     img_tensor = img_tensor.to(device)
 
     with torch.no_grad():
@@ -34,13 +27,26 @@ def predict(root,imgname, model, img_trans):
         pred_str = "cat"
     else:
         pred_str = "dog"
+    id = imgname.split("_")[0]
+    label = imgname.split("_")[1]
+    label = label.split(".")[0]
+    filepath = "./output/submission.csv"
+    csv_writer(filepath, id, label, pred_str)
+    return label, pred_str
 
-    plt.imshow(img_rgb)
-    plt.title("Predicted: {} ,Probability: {:.2f}".format(pred_str, pred_prob))
-    plt.savefig("output/pre_" + imgname)
+    # plt.imshow(img_rgb)
+    # plt.title("Predicted: {} ,Probability: {:.2f}".format(pred_str, pred_prob))
+    # plt.savefig("output/pre_" + imgname)
+
+def csv_writer(filepath, id, label, pr):
+    with open(filepath,"a", newline="") as csvfile: 
+        writer = csv.writer(csvfile)
+        #写入多行用writerows
+        writer.writerow([id,label,pr])
+
 
 if __name__ == "__main__":
-    
+
     # 图像预处理
     img_trans = transforms.Compose([
         transforms.CenterCrop(224),
@@ -49,12 +55,29 @@ if __name__ == "__main__":
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
 
-    model = LeNet1() # 模型结构
-    modelpath = "./runs/LeNet1_1/LeNet1_best.pth" # 训练好的模型路径
+    model = models.ResNet34() # 模型结构
+    # modelpath = "./runs/SqueezeNet_ep=100_bs=32_lr=5e-05_ld=0.9_wd=0/SqueezeNet_best.pth"
+    modelpath = "./runs/ResNet34_ep=100_bs=32_lr=5e-05_ld=0.9_wd=0/ResNet34_best.pth" # 训练好的模型路径
     checkpoint = torch.load(modelpath)  
     model.load_state_dict(checkpoint)  # 加载模型参数
     
-    root = "test_pics"
-    for pic in os.listdir(root):
+    with open("./output/submission.csv","w", newline="") as csvfile: 
+        writer = csv.writer(csvfile)
+        #先写入columns_name
+        writer.writerow(["id","label","predict result"])
+
+    root = "./datasets/test"
+
+    all = 0
+    correct = 0
+
+    pathlist = os.listdir(root)
+    pathlist = sorted(pathlist,key=lambda x: int(x.split("_")[0]))
+
+    for pic in pathlist:
+        all = all + 1
         if pic.endswith(".jpg"):
-            predict(root,pic, model, img_trans)
+            label,pre = predict(root,pic, model, img_trans)
+            if label == pre:
+                correct = correct + 1
+    print("acc = " + str(correct/all) + " all = " + str(all) + " correct = " + str(correct))
