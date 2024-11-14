@@ -6,6 +6,10 @@ Based on the data of the training set, a model is trained to predict the probabi
 
 The training set consists of 20,000 pictures, and the test set contains 5,000 pictures. 
 
+The outline is as follows：
+![image](https://github.com/user-attachments/assets/7b5444ff-1728-49a9-9d6a-16e455a5ea4f)
+
+
 ## Datasets processing
 
 ### 1.Damaged picture cleaning
