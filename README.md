@@ -41,7 +41,7 @@ The image preprocessing part needs to be completed:
 The models are placed in 'models.py' and use some classic CNN models:
 
 1. LeNet
-2. ResNet
+2. AlexNet
 3. ResNet
 4. SqueezeNet
 
